@@ -6,12 +6,15 @@ import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 
 import { Configuration as WebpackConfiguration } from 'webpack';
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
+import dotenv from 'dotenv';
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
 }
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+
+dotenv.config();
 
 const config: Configuration = {
   name: 'Crypto Trading Bot',
@@ -26,6 +29,7 @@ const config: Configuration = {
       '@pages': path.resolve(__dirname, 'pages'),
       '@utils': path.resolve(__dirname, 'utils'),
       '@typings': path.resolve(__dirname, 'typings'),
+      '@assets': path.resolve(__dirname, 'assets'),
     },
   },
   entry: {
@@ -63,6 +67,10 @@ const config: Configuration = {
         test: /\.css?$/,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.(png|jpg)$/,
+        use: ['file-loader'],
+      },
     ],
   },
   plugins: [
@@ -72,7 +80,10 @@ const config: Configuration = {
       //   files: "./src/**/*",
       // },
     }),
-    new webpack.EnvironmentPlugin({ NODE_ENV: isDevelopment ? 'development' : 'production' }),
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: isDevelopment ? 'development' : 'production',
+      KAKAO_KEY: process.env.KAKAO_KEY,
+    }),
   ],
   output: {
     path: path.join(__dirname, 'dist'),

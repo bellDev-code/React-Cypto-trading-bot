@@ -5,6 +5,9 @@ import { BrowserRouter, Switch, Redirect, Route } from 'react-router-dom';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
 import styles from '@utils/styles';
+import DirectSignup from '@pages/Signup/DirectSignup';
+
+window.Kakao.init(process.env.KAKAO_KEY);
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -22,6 +25,7 @@ const App = () => {
             <Redirect exact path="/" to="/login"></Redirect>
             <Route path="/login" render={() => <Login />} />
             <Route path="/signup" render={() => <Signup />} />
+            <Route path="/signup/direct" render={() => <DirectSignup />} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
