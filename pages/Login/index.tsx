@@ -1,5 +1,8 @@
+import fetcher from '@utils/fetcher';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { Redirect } from 'react-router';
+import useSWR from 'swr';
 import { Container, LoginBox, LoginForm, LoginInputWrapper, SubmitInput } from './styles';
 
 const Login = () => {
@@ -10,6 +13,13 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data: any) => console.log(data);
+
+  const { data } = useSWR('http://localhost:3050/users', fetcher);
+  console.log(data);
+
+  if (data?.ok) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <Container>

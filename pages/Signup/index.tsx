@@ -5,7 +5,7 @@ import KakaoButtonImage from '@assets/kakao_login_medium_wide.png';
 const Signup = () => {
   const onClickKakao = () => {
     window.Kakao.Auth.authorize({
-      redirectUri: `https://6a0fa8955515.ngrok.io/login/kakao/`,
+      redirectUri: `http://localhost:3050/login/kakao/`,
     });
   };
   return (

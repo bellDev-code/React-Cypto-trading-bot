@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from '@emotion/react';
 import styles from '@utils/styles';
 import DirectSignup from '@pages/Signup/DirectSignup';
+import Dashboard from './Dashboard';
 
 window.Kakao.init(process.env.KAKAO_KEY);
 
@@ -26,6 +27,7 @@ const App = () => {
             <Route path="/login" render={() => <Login />} />
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/signup/direct" render={() => <DirectSignup />} />
+            <Route path="/dashboard" render={() => <Dashboard />} />
           </Switch>
         </BrowserRouter>
       </ThemeProvider>
