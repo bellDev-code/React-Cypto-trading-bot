@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const SignUpBox = styled.div`
   background-color: #fff;
+  height: 50%;
   padding: 64px 32px;
 `;
 
